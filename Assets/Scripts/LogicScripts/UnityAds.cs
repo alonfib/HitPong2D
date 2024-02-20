@@ -4,6 +4,7 @@ using UnityEngine.Advertisements;
 public class UnityAds : MonoBehaviour
 {
     public Interstitial interstitial;
+    public RewardAd rewardAd;
     public UnityAdsInit adsInitializer;
     public float adsMaxPoints = 20f;
     public readonly float winAdPoints = 3;
@@ -20,13 +21,14 @@ public class UnityAds : MonoBehaviour
         adsPoints = PlayerPrefs.GetInt(AdsCounter, 0); // Default to 0 if not set
         logic = gameObject.GetComponent<LogicManager>();
         interstitial.OnAdComplete += AdCompleteHandler;
+        rewardAd.OnAdComplete += AdCompleteHandler;
         LoadInterstitial();
     }
 
     public void WatchAdToNextLevel()
     {
         isPrizeAd = true;
-        interstitial.ShowAd();
+        rewardAd.LoadAd();
     }
         
     private void AdCompleteHandler()
@@ -36,7 +38,6 @@ public class UnityAds : MonoBehaviour
         if (isPrizeAd)
         {
             logic.AdIncreaseProgression();
-            
             isPrizeAd = false;
         }
     }

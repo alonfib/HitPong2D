@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HitPong.unity
     guid: a77cc6de9e7a34c0a819b9b80039297b
-  - enabled: 1
+  - enabled: 0
     path: Assets/GoogleAdmob.unity
     guid: 64ad8019d16e24c699c020d19efb32cf
+  - enabled: 1
+    path: Assets/HitPong2D.unity
+    guid: 23bcd27b6e9c34b0088d7e3dd5b2eda9
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 61541e313c9f844c980763fd1a42e765, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6010067b66ae0483595603690512ccaa, type: 2}
