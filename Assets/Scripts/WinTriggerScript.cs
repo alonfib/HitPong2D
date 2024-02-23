@@ -24,6 +24,7 @@ public class WinTriggerScript : MonoBehaviour
     {
         if(!uiManager.isMenuOpen)
         {
+            Taptic.Success();
             logic.GameWin();
         }
     }

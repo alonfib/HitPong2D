@@ -19,7 +19,8 @@ public class LogicManager : MonoBehaviour
 
     private void Start()
     {
-        if(ResetProgression)
+
+        if (ResetProgression)
         {
             PlayerPrefs.SetInt(UserProgressionKey, 0);
         }

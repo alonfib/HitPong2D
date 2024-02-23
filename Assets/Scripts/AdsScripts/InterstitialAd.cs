@@ -69,8 +69,8 @@ public class Interstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     {
         //if (showCompletionState == UnityAdsShowCompletionState.COMPLETED)
         //{
-            // Invoke the ad completion event
-            OnAdComplete?.Invoke();
+        // Invoke the ad completion event
+        OnAdComplete?.Invoke();
         //}
     }
 }

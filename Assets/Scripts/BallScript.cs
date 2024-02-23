@@ -29,6 +29,8 @@ public class BallScript : MonoBehaviour
 
     void Start()
     {
+        Taptic.tapticOn = true;
+
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
         if (Rigidbody2D == null)
@@ -145,6 +147,22 @@ public class BallScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        float magnitude = Rigidbody2D.velocity.magnitude;
+        if (magnitude > 1f) // Adjust 0.1f threshold as needed
+        {
+            // Trigger haptic feedback only if the object is moving
+            Taptic.Heavy();
+        }
+        if (magnitude > 0.4f && magnitude <= 1f) // Adjust 0.1f threshold as needed
+        {
+            // Trigger haptic feedback only if the object is moving
+            Taptic.Medium();
+        }
+        if (magnitude <= 0.4f && magnitude > 2f) // Adjust 0.1f threshold as needed
+        {
+            Taptic.Light();
+        }
+
         if (collision.collider.CompareTag("Paddle"))
         {
             logic.TouchedPaddle();

@@ -23,6 +23,7 @@ public class LoseTriggerScript : MonoBehaviour
     {
         if (!uiManager.isMenuOpen && !logic.gameWinScreen.activeInHierarchy) 
         {
+            Taptic.Warning();
             logic.GameOver();
         }
     }
