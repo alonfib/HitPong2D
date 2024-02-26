@@ -11,8 +11,7 @@ public class UiManager : MonoBehaviour
     public Text levelText; // Public reference to the Text component
     public Text menuLevelText; // Public reference to the Text component
     public BallScript ballScript;
-    public GameObject gameOverScreen;
-    public GameObject gameWinScreen;
+    public GameObject gameFinishedScreen;
 
     public bool isMenuOpen = false;
 
@@ -40,7 +39,7 @@ public class UiManager : MonoBehaviour
     {
         if (levelUpButton != null)
         {
-            levelUpButton.interactable = levelManager.currentLevelIndex < logic.userProgression;
+            levelUpButton.interactable = levelManager.currentLevelIndex < logic.userProgression && levelManager.currentLevelIndex < 100;
         }
         else
         {
@@ -68,5 +67,16 @@ public class UiManager : MonoBehaviour
         int formattedLevelText = levelIndex + 1;
         levelText.text = "Level " + formattedLevelText;
         menuLevelText.text = "Level " + formattedLevelText;
+    }
+
+    public void HandleFinishGameScreen()
+    {
+        gameFinishedScreen.SetActive(true);
+    }
+
+    public void ToggleFinishScreen()
+    {
+        gameFinishedScreen.SetActive(false);
+        logic.RestartGame();
     }
 }

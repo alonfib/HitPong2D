@@ -4,6 +4,7 @@ public class LogicManager : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public GameObject gameWinScreen;
+    public GameObject FinishScreen;
     public BallScript ballScript;
     public int userProgression = 0;
     public GameObject confetti;
