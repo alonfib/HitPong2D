@@ -20,7 +20,7 @@ public class WinTriggerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!uiManager.isMenuOpen)
+        if(!uiManager.isMenuOpen && !logic.gameOverScreen.activeInHierarchy)
         {
             Taptic.Success();
 
