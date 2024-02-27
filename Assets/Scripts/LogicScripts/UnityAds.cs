@@ -6,7 +6,7 @@ public class UnityAds : MonoBehaviour
     public Interstitial interstitial;
     public RewardAd rewardAd;
     public UnityAdsInit adsInitializer;
-    public float adsMaxPoints = 20f;
+    public float adsMaxPoints;
     public readonly float winAdPoints = 3;
     public readonly float looseAdPoints = 2;
 

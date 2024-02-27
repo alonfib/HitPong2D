@@ -41659,7 +41659,7 @@ MonoBehaviour:
   interstitial: {fileID: 2020397049}
   rewardAd: {fileID: 2020397050}
   adsInitializer: {fileID: 2020397045}
-  adsMaxPoints: 20
+  adsMaxPoints: 17
 --- !u!114 &1747938371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47912,6 +47912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90182cc098a0e49bfaf3d08d67d7bfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _iOSAdUnitId: Interstitial_iOS
+  _androidAdUnitId: Interstitial_Android
 --- !u!114 &2020397050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47926,6 +47928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _showAdButton: {fileID: 416030077}
   _iOSAdUnitId: Rewarded_iOS
+  _androidAdUnitId: Rewarded_Android
 --- !u!1 &2021041328
 GameObject:
   m_ObjectHideFlags: 0
@@ -49916,6 +49919,10 @@ PrefabInstance:
     - target: {fileID: 8060056491828509385, guid: 4ee64be979eaf4ccebe0ac537a628a01, type: 3}
       propertyPath: m_Name
       value: MailBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8060056491828509385, guid: 4ee64be979eaf4ccebe0ac537a628a01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
