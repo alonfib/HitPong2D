@@ -16,7 +16,7 @@ public class TutorialScript : MonoBehaviour
     UiManager UiManager;
 
     int currentPage = 0;
-    // Use this for initialization
+
     void Start()
     {
         UiManager = gameObject.GetComponent<UiManager>();
