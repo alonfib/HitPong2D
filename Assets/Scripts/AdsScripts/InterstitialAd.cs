@@ -5,11 +5,28 @@ using UnityEngine.Advertisements;
 public class Interstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     UnityAdsInit unityAdsInit;
-    string _adUnitId = "Interstitial_iOS";
+    [SerializeField] string _iOSAdUnitId = "Interstitial_iOS";
+    [SerializeField] string _androidAdUnitId = "Interstitial_Android";
+    string _adUnitId = null;
 
     void Start()
     {
         unityAdsInit = gameObject.GetComponent<UnityAdsInit>();
+
+        // Check the platform and assign the correct Ad Unit ID
+        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
+        {
+            _adUnitId = _iOSAdUnitId;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            _adUnitId = _androidAdUnitId;
+        }
+        else
+        {
+            Debug.LogWarning("Unsupported platform for Unity Ads");
+        }
+
     }
 
     public event Action OnAdComplete;

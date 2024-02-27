@@ -15,7 +15,21 @@ public class UnityAdsInit: MonoBehaviour, IUnityAdsInitializationListener
 
     public void InitializeAds()
     {
-        _gameId = _iOSGameId;
+        // Check the running platform
+        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
+        {
+            _gameId = _iOSGameId;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            _gameId = _androidGameId;
+        }
+        else
+        {
+            Debug.LogWarning("Unsupported platform for Unity Ads");
+            return;
+        }
+
         if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
             Advertisement.Initialize(_gameId, _testMode, this);

@@ -7,6 +7,8 @@ public class RewardAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
 {
     [SerializeField] Button _showAdButton;
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
+    [SerializeField] string _androidAdUnitId = "Rewarded_Android";
+
     string _adUnitId = null; // This will remain null for unsupported platforms
     UnityAdsInit unityAdsInit;
 
@@ -15,7 +17,20 @@ public class RewardAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
 
     void Start()
     {
-        _adUnitId = _iOSAdUnitId;
+        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
+        {
+            _adUnitId = _iOSAdUnitId;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            _adUnitId = _androidAdUnitId;
+        }
+        else
+        {
+            Debug.LogWarning("Unsupported platform for Unity Ads");
+        }
+
+
         unityAdsInit = gameObject.GetComponent<UnityAdsInit>();
         //_showAdButton.interactable = false;
     }
