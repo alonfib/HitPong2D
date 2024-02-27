@@ -6,26 +6,30 @@ public class WinTriggerScript : MonoBehaviour
 {
     public LogicManager logic;
     public UiManager uiManager;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
         uiManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<UiManager>();
+        levelManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<LevelManager>();
     }
 
-    void Update()
-    {
 
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(!uiManager.isMenuOpen)
         {
             Taptic.Success();
-            logic.GameWin();
+
+            if(levelManager.currentLevelIndex < 99) {
+                logic.GameWin();
+            } else
+            {
+                logic.HandleFinish();
+            }
         }
     }
 }

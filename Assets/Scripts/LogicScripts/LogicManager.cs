@@ -5,6 +5,8 @@ public class LogicManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject gameWinScreen;
     public GameObject FinishScreen;
+    public GameObject gameUI;
+
     public BallScript ballScript;
     public int userProgression = 0;
     public GameObject confetti;
@@ -15,7 +17,7 @@ public class LogicManager : MonoBehaviour
     private LevelManager levelManager;
     private UnityAds adsManager;
 
-    private const string UserProgressionKey = "UserProgression";
+    private const string UserProgressionKey = "NewUserProgression";
 
 
     private void Start()
@@ -78,6 +80,7 @@ public class LogicManager : MonoBehaviour
         if(userProgression < levelManager.maxLevel)
         {
             userProgression = userProgression + 1;
+            levelManager.MoveToLevel(userProgression);
             uiManager.UpdateLevelButtons();
         }
     }
@@ -92,5 +95,35 @@ public class LogicManager : MonoBehaviour
         userProgression++;
         PlayerPrefs.SetInt(UserProgressionKey, userProgression); // Save progression
         PlayerPrefs.Save(); // Ensure it's written to disk
+    }
+
+    public void HandleFinish()
+    {
+        if (isBallTouchedPaddle)
+        {
+            confetti.SetActive(true);
+            FinishScreen.SetActive(true);
+            gameUI.SetActive(false);
+        } else
+        {
+            GameOver();
+        }
+
+    }
+
+   public void CloseFinish()
+    {
+        RestartGame();
+        confetti.SetActive(false);
+        FinishScreen.SetActive(false);
+        gameUI.SetActive(true);
+    }
+
+    public void GoToFirstLevel()
+    {
+        levelManager.MoveToLevel(0);
+        confetti.SetActive(false);
+        FinishScreen.SetActive(false);
+        gameUI.SetActive(true);
     }
 }

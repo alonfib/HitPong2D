@@ -234,7 +234,7 @@ public class BallScript : MonoBehaviour
 
     void handleGameOver()
     {
-        if(!isFrozen && !logic.gameWinScreen.activeInHierarchy)
+        if(!isFrozen && !logic.gameWinScreen.activeInHierarchy && !logic.FinishScreen.activeInHierarchy)
         {
             if (!IsBallOnScreen())
             {
