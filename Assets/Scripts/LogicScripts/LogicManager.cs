@@ -43,7 +43,7 @@ public class LogicManager : MonoBehaviour
     [ContextMenu("Restart Game")]
     public void RestartGame()
     {
-        if(isBallTouchedPaddle)
+        if(ballScript.isThrown)
         {
             adsManager.HandleInGameAds(adsManager.looseAdPoints);
         }

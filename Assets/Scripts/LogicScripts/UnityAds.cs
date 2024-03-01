@@ -5,10 +5,9 @@ public class UnityAds : MonoBehaviour
 {
     public Interstitial interstitial;
     public RewardAd rewardAd;
-    public UnityAdsInit adsInitializer;
     public float adsMaxPoints;
     public readonly float winAdPoints = 3;
-    public readonly float looseAdPoints = 2;
+    public readonly float looseAdPoints = 1;
 
     private LogicManager logic;
     private bool isPrizeAd = false;
@@ -22,7 +21,7 @@ public class UnityAds : MonoBehaviour
         logic = gameObject.GetComponent<LogicManager>();
         interstitial.OnAdComplete += AdCompleteHandler;
         rewardAd.OnAdComplete += AdCompleteHandler;
-        LoadInterstitial();
+        interstitial.LoadAd();
     }
 
     public void WatchAdToNextLevel()
@@ -45,7 +44,9 @@ public class UnityAds : MonoBehaviour
     public void HandleInGameAds(float points)
     {
         adsPoints = adsPoints + points;
-        if(adsPoints > adsMaxPoints && Advertisement.isInitialized)
+        Debug.Log("adsPoints");
+        Debug.Log(adsPoints);
+        if (adsPoints > adsMaxPoints && Advertisement.isInitialized)
         {
             ShowInterstitial();
             adsPoints = 0;

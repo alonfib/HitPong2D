@@ -6,9 +6,9 @@ public class UnityAdsInit: MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
     [SerializeField] bool _testMode;
-    private string _gameId;
+    private string _gameId = "";
 
-    void Awake()
+    void Start()
     {
         InitializeAds();
     }
@@ -16,23 +16,20 @@ public class UnityAdsInit: MonoBehaviour, IUnityAdsInitializationListener
     public void InitializeAds()
     {
         // Check the running platform
-        if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
-        {
-            _gameId = _iOSGameId;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
+        _gameId = _iOSGameId;
+        if (Application.platform == RuntimePlatform.Android)
         {
             _gameId = _androidGameId;
         }
         else
         {
-            Debug.LogWarning("Unsupported platform for Unity Ads");
-            return;
+            Debug.LogWarning("UnityAdsInit - Unsupported platform for Unity Ads");
+            //return;
         }
 
-        if (!Advertisement.isInitialized && Advertisement.isSupported)
+        if (!Advertisement.isInitialized)
         {
-            Advertisement.Initialize(_gameId, _testMode, this);
+            Advertisement.Initialize(_iOSGameId, _testMode, this);
         }
     }
 
