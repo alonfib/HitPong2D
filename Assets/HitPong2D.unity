@@ -41657,8 +41657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interstitial: {fileID: 2020397049}
   rewardAd: {fileID: 2020397050}
-  adsInitializer: {fileID: 2020397045}
-  adsMaxPoints: 10
+  adsMaxPoints: 12
 --- !u!114 &1747938371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47919,7 +47918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90182cc098a0e49bfaf3d08d67d7bfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unityAdsInit: {fileID: 2020397045}
   _iOSAdUnitId: Interstitial_iOS
   _androidAdUnitId: Interstitial_Android
 --- !u!114 &2020397050

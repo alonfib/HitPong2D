@@ -7,9 +7,11 @@ public class Interstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     [SerializeField] string _iOSAdUnitId = "Interstitial_iOS";
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     string _adUnitId = "";
+    UnityAdsInit unityAdsInit;
 
     void Start()
     {
+        unityAdsInit = gameObject.GetComponent<UnityAdsInit>();
         _adUnitId = _iOSAdUnitId;
 
         if (Application.platform == RuntimePlatform.Android)
@@ -28,12 +30,24 @@ public class Interstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log("Ad Loaded: " + _adUnitId);
+
+        if (adUnitId.Equals(_adUnitId))
+        {
+            Advertisement.Show(_adUnitId, this);
+        }
     }
 
     // Load content to the Ad Unit:
     public void LoadAd()
     {
-        Advertisement.Load(_adUnitId, this);
+        if (Advertisement.isInitialized)
+        {
+            Advertisement.Load(_adUnitId, this);
+        }
+        else
+        {
+            unityAdsInit.InitializeAds();
+        }
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
         Debug.Log("Loading Ad: " + _adUnitId);
     }
@@ -63,7 +77,7 @@ public class Interstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
 
     public void OnUnityAdsShowFailure(string _adUnitId, UnityAdsShowError error, string message)
     {
-        Debug.Log($"Error showing Ad Unit {_adUnitId}: {error.ToString()} - {message}");
+        Debug.Log($"Error showing Interstitial Ad Unit {_adUnitId}: {error.ToString()} - {message}");
         // Optionally execute code if the Ad Unit fails to show, such as loading another ad.
     }
 
