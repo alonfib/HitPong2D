@@ -19,7 +19,7 @@ public class BallScript : MonoBehaviour
     private Vector2 previousPosition;
     private float currentThrowForce;
     private bool isChargingThrow;
-    private bool isThrown = false;
+    public bool isThrown = false;
     private float stationaryTime = 0f;
 
     private Vector2 savedVelocity;
